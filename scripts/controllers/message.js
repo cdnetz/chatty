@@ -4,12 +4,19 @@ angular.module('chattyApp')
   .controller('MessageCtrl', function ($scope, MessageService) {
     $scope.messages = [];
 
-    $scope.addMessage = function (textInput) {
-    	return http.post('http://localhost:8002')
+    $scope.addMessage = function () {
+    	MessageService.postMessage($scope.textInput).then(function (response) {
+    		$scope.messages = response.data;
+    		$scope.textInput = '';
+
+    		
+    	})
+
+
     	
     }
 
    MessageService.getMessages().then(function (response) {
-    	$scope.messages = response.data;
+    	$scope.messages = response;
     })
   });

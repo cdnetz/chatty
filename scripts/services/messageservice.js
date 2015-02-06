@@ -11,5 +11,10 @@ app.service('MessageService', function ($http) {
 
     		})
     	}
+
+    	this.postMessage = function (importMessage) {
+    		return $http.post('http://localhost:8002', {text: importMessage});
+    	}
+
      
   });
